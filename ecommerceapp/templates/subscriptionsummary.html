@@ -1,0 +1,21 @@
+<!-- summary.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+</head>
+<body>
+    <h1>Summary</h1>
+    <p>Customer Session: {{ session }}</p>
+    <h2>Cart Items</h2>
+    <ul>
+        {% for item in cartobj %}
+            <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Total: {{ item.totalamount }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total Bill: {{ totalbill }}</p>
+</body>
+</html>

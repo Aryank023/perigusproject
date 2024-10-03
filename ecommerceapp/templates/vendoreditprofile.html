@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+
+{% load static %}
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'vendorprofileedit.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="register-body">
+
+    <div class="wrapper">
+        <form action="{% url 'vendoreditprofile' %}" method="post" >
+            {% csrf_token %}
+            <h1>Edit Account</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Full Name" required id="uname" name="fullname" value="{{context.name}}">
+                <i class='bx bxs-user'></i>
+            </div>
+            
+           
+            <div class="input-box">
+                <input type="number" placeholder="Phone Number" required id="phoneno" name="phoneno" value="{{context.phoneno}}">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div Class="input-box">
+                <input type="text" name="address" required placeholder="Address" value="{{context.address}}"></input>
+                <!-- <i class='bx bxs-user'></i> -->
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="State" required id="state" name="state" value="{{context.state}}">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="District" required id="district", name="district" value="{{context.district}}">
+                <i class='bx bxs-user'></i>
+           
+            </div>
+            
+           
+            
+            <button type="submit" class="btn">SAVE Profile</button>
+
+           
+        </form>
+       
+    
+    <!-- <script src="mian.js"></script> -->
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to {{ subscription.name }}</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;400&display=swap" rel="stylesheet">
+
+
+    <style>
+
+
+body {
+  background: linear-gradient(to top right,#EDF1F4 0%, #C3CBDC 100%);;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: linear-gradient(to top right, #f6d365 0%, #Fda085 100%);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.payment-form {
+  background-color: #444;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.payment-label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.payment-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.button {
+  background-color: #ff9900;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #ffcc00;
+}
+
+    </style>
+</head>
+<body>
+    <input type="text" hidden name="subid" value="{{subscription.id}} ">
+    <!-- <h1>Subscribe to {{ subscription.name }}</h1>
+    <p>Description: {{ subscription.description }}</p>
+    <p>Price: {{ subscription.price }}</p> -->
+
+
+
+
+
+    
+
+
+
+    <form action="https://api.razorpay.com/v1/checkout/embedded" method="POST">
+        {% csrf_token %}
+        
+
+        <div class="container">
+          <div class="card">
+            <div class="title">Subscription Package Name : {{ subscription.name }}</div>
+            <div class="description">{{ subscription.description }}</div>
+            <div class="price">{{ subscription.price }}</div>
+            <div class="payment-form">
+              <div class="payment-label">NAME : {{vobj.name}}</div>
+              
+              <div class="payment-label">phone number : {{vobj.phoneno}}</div>
+              
+              
+              <div class="payment-label">Address : {{vobj.address}}</div>
+    
+              <div class="payment-label">State : {{vobj.state}}</div>
+              <div class="payment-label">District : {{vobj.district}}</div>
+              
+              <button class="button" id="pay-btn">Pay using Razor Pay</button>
+            </div>
+            
+            
+          </div>
+        </div>
+
+
+        <div class="btn_container">
+            <!-- Payment Button -->
+            
+          </div>
+        
+     
+       
+      <!-- Razorpay's Javascript code. -->
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      <script>
+        var options = {
+           
+          // Enter the Key ID generated from the Dashboard
+          key: "rzp_test_TSDwRw40jVay6v", 
+          amount: 100, 
+          currency: "INR",
+          name: "Pet Store", 
+           
+          // Pass the `id` obtained
+           
+          "handler": function(response) {
+console.log("success");
+
+            
+window.location.href = `http://localhost:8000/payment_success?&subid={{subscription.id}}&session={{session}}&razorpay_payment_id=${response.razorpay_payment_id}`
+          }
+        };
+         
+        // initialise razorpay with the options.
+        var rzp1 = new Razorpay(options);
+         
+        // add event listener to the payment button.
+        document.getElementById("pay-btn").onclick = function (e) {
+          rzp1.open();
+          e.preventDefault();
+        };
+      </script>
+    </form>
+</body>
+</html>

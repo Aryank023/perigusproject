@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'vendorprofileedit.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+      <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+</head>
+<body class="register-body">
+    {% block myblock %}
+    
+    <div class="wrapper">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Add Product</h1>
+            <div class="input-box">
+                <input type="text" class="form-control" placeholder="Product name" value="{{pobj.name}}" name="productname">
+                <i class='bx bxs-user'></i>
+            </div>
+            <input type="hidden" value="{{pobj.id}}" name="vid">
+ 
+            
+            <div class="input-box">
+                <input type="file" class="form-control" id="image" name="image" value="{{pobj.image.url}}">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div >
+                <label class="labels">Category</label> <select id="category" name="category">
+                    {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+                
+                
+                </select>
+                <i class='bx bxs-user'></i>
+            </div>
+           
+            <div>
+                <label class="labels">Sub Category</label> <select id="subcategory" name="subcategory">
+                    {% for subcategory in subcategories %}
+                    <option value="{{ subcategory.id }}">{{ subcategory.name }}</option>
+                {% endfor %}
+                </select>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="text" class="form-control" placeholder=" Description" value="{{pobj.description}}" name="description">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" class="form-control" placeholder=" quantity" value="{{pobj.stock}}" name="stock">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" class="form-control" placeholder="price" value="{{pobj.price}}" name="price">
+                <i class='bx bxs-user'></i>
+           
+            </div>
+            
+           
+            
+            <button type="submit" class="btn">Upload Product</button>
+
+           
+        </form>
+       
+    
+
+
+
+
+
+{%endblock%}
+</body>
+</html>

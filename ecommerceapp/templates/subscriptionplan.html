@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscription Plans</title>
+    <link rel="stylesheet" href="../static/subscription.card.css">
+    
+</head>
+
+<body>
+   
+    <div class="container">
+        <h3 style="text-align: center;"><p class="h2 text-center mb-5">Choose Your Perfect Plan</p></h3>
+        <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 640px;"> 
+            <a href="http://127.0.0.1:8000/vendorprofile"><button class="butten"  type="submit">Go to Dash board</button> </a>
+        </div> 
+        <div >
+            {% if subscriptions %}
+            <div class="col-lg-3 col-md-6 "> 
+                {% for subscription in subscriptions %}
+                <div class="card d-flex align-items-center justify-content-space-between"> 
+                    
+                     
+                    <p class="h-1 pt-5">{{ subscription.name }}</p> 
+                    <span class="price"><span class="number">Rs.{{subscription.price}}</span> </span> 
+                    <ul class="mb-5 list-unstyled text-muted"> 
+                        
+                        <li><label>Description: </label>{{ subscription.description }}</li> 
+                        <li><label>Features: </label>{{ subscription.features }}</li> 
+                        <li><label>Duration of months: </label>{{ subscription.duration_months }}</li>  
+                        
+                    </ul> 
+                    <form action="{% url 'purchase_subscription' subscription.id %}" method="post">
+                        {% csrf_token %}
+                    <button class="btn btn-primary" type="submit">Purchase</button> 
+                </form>
+                </div> 
+                {% endfor %}
+            </div> 
+            {% else %}
+            <h3><p class="h2 text-center mb-5">No subscriptions available.</p></h3>
+        {% endif %}
+        
+        </div>
+        
+    </div>
+    
+    
+            <!-- #http://127.0.0.1:8000/vendorprofile -->
+</body>
+</html>

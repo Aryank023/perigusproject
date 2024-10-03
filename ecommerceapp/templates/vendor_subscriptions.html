@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendor Subscriptions</title>
+
+    <style>
+
+
+.bodyy {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.review-card {
+    background: linear-gradient(to top right, #f6d365 0%, #Fda085 100%);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.review-card h3 {
+  margin-top: 0;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  color: #ffc107;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.review-text {
+  margin-top: 10px;
+}
+
+.read-more {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  text-decoration: none;
+}
+.butten{
+        width: 200px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to top right, #f6d365 0%, #Fda085 100%);
+        border: none;
+        border-radius: 0px;
+        box-shadow: none
+    }
+
+    </style>
+</head>
+<body>
+    <div class="bodyy">
+    <h1 class="review-text">Active Subscription</h1>
+    
+    {% if vendor_subscriptions %}
+    {% for subscription in vendor_subscriptions %}
+    
+    <div class="review-card">
+        <h3 class="review-title">Hello {{ subscription.vendorid.name }} !</h3>
+        <h3 class="review-title"> Package Name: {{ subscription.subscription.name }}</h3>
+        <h4 class="review-title"> Duration: {{ subscription.subscription.duration_months }} Month</h4>
+        <p class="review-text">Start Date: {{ subscription.start_date }} - End Date: {{ subscription.end_date }}
+            {% endfor %}
+            {% else %}
+        <p>No active subscriptions found.</p>
+    {% endif %}
+</div>
+    <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 640px;"> 
+        <a href="http://127.0.0.1:8000/vendorprofile"><button class="butten"  type="submit">Go to Dash board</button> </a>
+    </div> 
+
+</body>
+</html>

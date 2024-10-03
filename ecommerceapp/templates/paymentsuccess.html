@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.success-message {
+  padding: 20px;
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  margin-bottom: 20px;
+}
+.info {
+  margin-bottom: 10px;
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="success-message">
+    <i class="fas fa-check-circle fa-5x" style="color: #4CAF50;"></i>
+    <h2>Payment Successful</h2>
+    <p>Thank you {{payobj.customerid.name}} for your purchase!</p>
+  </div>
+  <div class="info">
+    
+    <p>Date : <strong>{{payobj.oid.orderdate}}</strong></p>
+    <p>Order Number: <strong>{{payobj.oid.ordernumber}}</strong></p>
+  </div>
+  <a href="http://127.0.0.1:8000/homepage" class="button">Return to Homepage</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!-- view_cart.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Cart</title>
+</head>
+<body>
+    <h2>Your Cart</h2>
+    
+    {% if cart_items %}
+        <ul>
+        {% for item in cart_items %}
+            <li>
+                <p>Subscription: {{ item.subscription.name }}</p>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p>Total Amount: ${{ item.totalamount }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+        <p>Total Bill: ${{ total_bill }}</p>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+    
+    <a href="{% url 'subscription_plans' %}">Back to Subscription Plans</a>
+</body>
+</html>
